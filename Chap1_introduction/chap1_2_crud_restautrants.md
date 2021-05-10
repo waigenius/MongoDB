@@ -258,7 +258,7 @@ while (myCursor.hasNext()) {
 Puis comparez le résultat avec la méthode count :
 
 ```js
-db.collection.findOne(query, restriction).count()
+db.collection.find(query, restriction).count()
 ```
 
 ### 2. Exercices sur la notion de filtrage
