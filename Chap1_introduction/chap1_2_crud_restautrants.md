@@ -356,9 +356,9 @@ $size
 
 { "content": { $elemMatch: { "name": "Turing Award", "year": { $gt: 1980 } } } }
 
-// recherche avec une Regex
+// recherche avec une Regex simple
 $regex
-{ "name": { $regex: /^A/ } }
+{ "name": /^A/  }
 
 ```
 
