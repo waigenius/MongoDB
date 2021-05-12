@@ -124,6 +124,32 @@ db.inventory.insertMany( [
 
 1. Affichez tous les articles de type journal. Et donnez la quantité total de ces articles (propriété qty). Pensez à faire un script en JS.
 
+```js
+// 1. Première solution
+// définition d'une fonction cursor
+const cursorInventor = (rest, proj) => {
+   return db.inventory.find(rest, proj);
+};
+
+let total = 0;
+cursorInventor({ type: "journal" }, {_id: 0, qty: 1}).forEach( doc => {
+   const { qty } = doc; // assignation par destructuration
+
+    total += qty;
+});
+print(`Total des quantités : ${total}`);
+
+// 1. Deuxième solution
+total = 0; // portée globale
+db.inventory.find({ type: "journal" }).forEach(doc => {
+    const { qty } = doc; // assignation par destructuration
+
+    total += qty;
+});
+
+print(`Total des quantités : ${total}`);
+```
+
 2. Affichez les noms de sociétés depuis 2018 ainsi que leur quantité.
 
 3. Affichez les types des articles pour les sociétés dont le nom commence par A.
