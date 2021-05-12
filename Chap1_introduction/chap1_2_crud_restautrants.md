@@ -365,11 +365,11 @@ $regex
 
 Regex signifie en réalité Regular Expressions. Mais c'est un mot issu d'une fusion d'autres mots dont Regular Expressions en fait parti.
 
-Les expressions rationnelles (regex) sont issues de la théorie des mathématiques et spécialementdes langages formels définies dans les années 1940. Le regex ont la capacité à décrire **avec concision** des ensembles réguliers.
+Les expressions rationnelles (regex) sont issues de la théorie des mathématiques et spécialementdes des langages formels définies dans les années 1940. Le regex ont la capacité à décrire **avec concision** des ensembles réguliers ou pattern.
 
-Le standard POSIX a permi de normaliser la syntaxe et fonctionnalité des différents éditeurs de Regex.
+Le standard POSIX a permi de normaliser la syntaxe et fonctionnalités des différents éditeurs de Regex.
 
-Vous trouverez une librairie PCRE (Perl Compatible Regex) implémentée dans de nombreux langages.
+Vous trouverez une librairie PCRE (Perl Compatible Regex) implémentée dans de nombreux langages comme dans Mongo et JS par exemple.
 
 Pour utiliser une Regex complexe avec Mongo il faudra utiliser la syntaxe suivante :
 
@@ -377,7 +377,7 @@ Pour utiliser une Regex complexe avec Mongo il faudra utiliser la syntaxe suivan
 { <field>: { $regex: /pattern/, $options: '<options>' } }
 ```
 
-MongoDB utilise Perl compatible regular expressions (i.e. "PCRE" ) version 8.42 avec le support UTF-8.
+MongoDB utilise Perl compatible regular expressions (i.e. "PCRE" ) version 8.42 en 2021 avec le support UTF-8.
 
 ## Exercice
 
@@ -404,7 +404,9 @@ db.restaurants
         grade: "A",
       },
     },
-  })
+  },
+  { _id : 0, name : 1 }
+  )
   .sort({
     name: -1,
   })
