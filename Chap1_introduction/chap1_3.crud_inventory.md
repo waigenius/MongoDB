@@ -2,21 +2,25 @@
 
 ## Exercices inventory
 
-Pour les exercices suivants créer un fonction de type cursor en JS :
+Pour les exercices suivants vous pouvez créer un fonction de type cursor en JS :
 
 ```js
-const myCursor = args => db.collection.find(args)
+const myCursor = (restriction,projection) => db.collection.find(restriction, projection)
 ```
 
 Vous pouvez également trier vos documents à l'aide de la méthode sort :
 
 ```js
-const myCursorSort = (args, key) => db.collection.find(args).sort(key)
+const myCursorSort = (restriction, projection, keySort) => db.collection.find(restriction, projection).sort(keySort)
 ```
 
 Créez une base de données **shop** et insérez les données suivantes :
 
 ```js
+use shop;
+
+db.createCollection("inventory");
+
 db.inventory.insertMany( [
    {
       "sale" : true, "price" : 0.99,
