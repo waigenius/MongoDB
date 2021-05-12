@@ -611,7 +611,7 @@ db.restaurants.find({
 
 ## Recherche par rapport à la date
 
-Exécutez la requête suivante, qu'affiche-t-elle ?
+Sans exécutez la requête suivante, qu'affiche-t-elle ?
 
 ```js
 db.restaurants.find(
@@ -620,6 +620,26 @@ db.restaurants.find(
   },
   { _id: 0, name: 1, borough: 1, "grades.date": 1 }
 );
+```
+
+## Exercice 
+
+Affichez tous les noms  des restaurants qui ont une appréciation (grades) dont toutes les dates sont supérieures à la date suivante:
+
+```js
+ ISODate("2012-10-24T00:00:00Z")
+```
+
+### Correction 
+
+```js
+ db.restaurants.find(
+    { 
+      "grades.date" : { $gte: ISODate("2012-10-24T00:00:00Z"), $not: { $lt: ISODate("2012-10-24T00:00:00Z") } } 
+    }
+  ,
+  { _id: 0, name: 1, borough: 1, "grades.date": 1 }
+).pretty();
 ```
 
 ### Exercices supplémentaires
