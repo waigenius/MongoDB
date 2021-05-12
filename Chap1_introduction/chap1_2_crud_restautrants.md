@@ -591,7 +591,22 @@ const coordinate = [-73.961704, 40.662942];
 Indications : vous utiliserez la syntaxe suivante avec les opérateurs MongoDB :
 
 ```js
-{ $nearSphere: { $geometry: { type: "Point", coordinates: coordinate }, $maxDistance: VOTRE_DISTANCE} }
+// opérateur
+{ $nearSphere: { $geometry: { type: "Point", coordinates: coordinate }, $maxDistance: VOTRE_DISTANCE_EN_METRE } }
+```
+
+### Correction 
+
+```js
+const DISTANCE = 5 * 1609.34; // rayon 
+const COORDINATE  = [-73.961704, 40.662942];
+
+db.restaurants.find({
+  "address.coord": { 
+      $nearSphere: { $geometry: { type: "Point", coordinates: COORDINATE }, $maxDistance: DISTANCE } }
+  }
+)
+
 ```
 
 ## Recherche par rapport à la date
