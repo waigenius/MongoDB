@@ -404,7 +404,9 @@ db.restaurants
         grade: "A",
       },
     },
-  })
+  },
+  { _id : 0, name : 1 }
+  )
   .sort({
     name: -1,
   })
