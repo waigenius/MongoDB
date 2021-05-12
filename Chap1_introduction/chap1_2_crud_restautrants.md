@@ -361,6 +361,25 @@ $regex
 { "name": /^A/  }
 
 ```
+## Regex présentation
+
+Regex signifie en réalité Regular Expressions. Mais c'est un mot issu d'une fusion d'autres mots dont Regular Expressions en fait parti.
+
+Les expressions rationnelles (regex) sont issues de la théorie des mathématiques et spécialementdes langages formels définies dans les années 1940. Le regex ont la capacité à décrire **avec concision** des ensembles réguliers.
+
+Le standard POSIX a permi de normaliser la syntaxe et fonctionnalité des différents éditeurs de Regex.
+
+Vous trouverez une librairie PCRE (Perl Compatible Regex) implémentée dans de nombreux langages.
+
+Pour utiliser une Regex complexe avec Mongo il faudra utiliser la syntaxe suivante :
+
+```js
+{ <field>: { $regex: /pattern/, $options: '<options>' } }
+```
+
+MongoDB utilise Perl compatible regular expressions (i.e. "PCRE" ) version 8.42 avec le support UTF-8.
+
+## Exercice
 
 1. Combien y a t il de restaurants qui font de la cuisine italienne et qui ont eu un score de 10 au moins ?
    Affichez également le nom, les scores et les coordonnées GPS de ces restaurants. Ordonnez les résultats
@@ -512,6 +531,7 @@ db.restaurants.find(
 - 9. Nouvelle question : Trouvez tous les restaurants qui ont dans leur nom le mot clé coffee, qui sont dans le bronx ou dans Brooklyn, qui ont eu exactement 4 appréciations (grades).
 
 - 10. Affichez tous les noms de ces restaurants en majuscule avec leur dernière date et permière date d'évaluation.
+
 - 11. Précisez également le quartier dans lequel ce restaurent se trouve.
 
 Indications : utilisez les opérateurs suivants :
@@ -561,7 +581,21 @@ db.restaurants.find(
 );
 ```
 
-## Lire un document entièrement
+### Exercices supplémentaires
+
+1. Affichez la liste des restaurants dont le nom commence et se termine par une voyelle.
+
+2. Affichez la liste des restaurants dont le nom commence et se termine par une meme lettre. Vous ferez attention à ne pas récupérer dans votre requête les restaurants n'ayant pas de nom. 
+
+Remarque vous pouvez soit programmer cet affichage, soit directement utiliser une regex. Dans ce cas lisez les indications suivantes :
+
+```js
+() // les parenthèses captures une chaîne de caractère(s)
+\1 // permet de récupérer la première chaîne de caractère(s) capturée(s)
+\2 // permet de récupérer la deuxième chaîne de caractère(s) capturée(s)
+```
+
+## Lire un document entièrement résumé
 
 La méthode find permet de lire les documents dans une collection, par défaut elle ne retournera que 20 documents au maximum.
 
