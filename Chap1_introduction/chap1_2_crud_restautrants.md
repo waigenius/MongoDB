@@ -646,6 +646,22 @@ Affichez tous les noms  des restaurants qui ont une appréciation (grades) dont 
 
 1. Affichez la liste des restaurants dont le nom commence et se termine par une voyelle.
 
+### Correction
+
+```js
+db.restaurants.find(
+    { name: /^[ aeiouy ].*[ aeiouy ]$/i },
+    {
+        _id: 0,
+        name: 1
+    }
+).forEach(doc => {
+    const { name } = doc;
+    print(`Name : ${name}`);
+    print("----------------------------------");
+});
+```
+
 2. Affichez la liste des restaurants dont le nom commence et se termine par une meme lettre. Vous ferez attention à ne pas récupérer dans votre requête les restaurants n'ayant pas de nom. 
 
 Remarque vous pouvez soit programmer cet affichage, soit directement utiliser une regex. Dans ce cas lisez les indications suivantes :
