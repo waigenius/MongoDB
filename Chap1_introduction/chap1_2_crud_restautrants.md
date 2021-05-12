@@ -662,7 +662,7 @@ db.restaurants.find(
 });
 ```
 
-2. Affichez la liste des restaurants dont le nom commence et se termine par une meme lettre. Vous ferez attention à ne pas récupérer dans votre requête les restaurants n'ayant pas de nom. 
+2. Affichez la liste des restaurants dont le nom commence et se termine par une même lettre. Vous ferez attention à ne pas récupérer dans votre requête les restaurants n'ayant pas de nom. 
 
 Remarque vous pouvez soit programmer cet affichage, soit directement utiliser une regex. Dans ce cas lisez les indications suivantes :
 
@@ -670,6 +670,38 @@ Remarque vous pouvez soit programmer cet affichage, soit directement utiliser un
 () // les parenthèses captures une chaîne de caractère(s)
 \1 // permet de récupérer la première chaîne de caractère(s) capturée(s)
 \2 // permet de récupérer la deuxième chaîne de caractère(s) capturée(s)
+```
+
+### Correction
+
+```js
+// première correction
+db.restaurants.find(
+    { name: { $nin: [""] } },
+    { name: 1, _id: 0 }
+).forEach(doc => {
+    const { name } = doc;
+    if (name.toLowerCase().substr(0, 1) === name.toLowerCase().substr(-1)) {
+        print(name);
+        print("----------------------------------");
+    }
+})
+
+// deuxième correction
+db.restaurants.find(
+    {
+        name: { $nin: [""] },
+        // regex : commence par une lettre de a à z en minuscule capturé
+        // suivi de n'importe quel caractère(s) (0, infini) et se termine par
+        // ce que j'ai capturé
+        name: { $regex: /^([a-z]).*\1$/, $options: "i" }
+    },
+    { name: 1, _id: 0 }
+).forEach(doc => {
+    const { name } = doc;
+    print(name);
+    print("----------------------------------");
+});
 ```
 
 ## Lire un document entièrement résumé
