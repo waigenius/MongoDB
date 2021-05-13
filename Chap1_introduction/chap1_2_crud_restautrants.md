@@ -693,7 +693,7 @@ db.restaurants.find(
         name: { $nin: [""] },
         // regex : commence par une lettre de a à z en minuscule capturé
         // suivi de n'importe quel caractère(s) (0, infini) et se termine par
-        // ce que j'ai capturé
+        // ce que les parenthèses ont capturé
         name: { $regex: /^([a-z]).*\1$/, $options: "i" }
     },
     { name: 1, _id: 0 }
