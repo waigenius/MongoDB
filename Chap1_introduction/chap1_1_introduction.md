@@ -94,7 +94,7 @@ Dans le cas contraire récupérez les outils Mongo séparament :
 
 [tools data](https://www.mongodb.com/try/download/database-tools)
 
-## Dernière option pour tester Mongo
+## Dernière option pour tester MongoDB
 
 Vous n'avez pas réussi l'installation vous pouvez toujours le faire plus tard et tester Mongo en ligne :
 
